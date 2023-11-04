@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+)
+
+//Escreva uma função que receba um mapa com valores inteiros e retorne a soma de todos os valores.
+
+func SumOfMap(compras map[string]int) int {
+	var soma int = 0
+	for _, valor := range compras {
+		soma += valor
+	}
+	return soma
+}
+
+func main() {
+	compras := make(map[string]int)
+
+	compras["a"] = 10
+	compras["b"] = 20
+	compras["c"] = 20
+	compras["d"] = 10
+	compras["e"] = 10
+
+	fmt.Println(SumOfMap(compras))
+}
