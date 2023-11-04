@@ -1,0 +1,42 @@
+package main
+
+import "fmt"
+
+//Escreva uma função que receba dois mapas
+//e retorne um novo mapa contendo todos os elementos dos mapas de entrada.
+//Em caso de chaves duplicadas, o valor do segundo mapa deve prevalecer.
+
+func TwoMaps(mapa1 map[string]int, mapa2 map[string]int) map[string]int {
+	mapa3 := make(map[string]int)
+	for chave, _ := range mapa2 {
+		mapa3[chave]++
+
+	}
+	for chave, _ := range mapa1 {
+		_, ok := mapa3[chave]
+		if ok {
+			continue
+		} else {
+			mapa3[chave]++
+		}
+	}
+	return mapa3
+}
+
+func main() {
+	mapa1 := make(map[string]int)
+	mapa1["ba"] = 10
+	mapa1["bc"] = 10
+	mapa1["bd"] = 10
+	mapa1["a"] = 10
+
+	mapa2 := make(map[string]int)
+
+	mapa2["aa"] = 10
+	mapa2["ab"] = 10
+	mapa2["ac"] = 10
+	mapa2["ad"] = 10
+	mapa2["a"] = 10
+
+	fmt.Println(TwoMaps(mapa1, mapa2))
+}
