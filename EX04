@@ -1,0 +1,49 @@
+package main
+
+import "fmt"
+
+//Escreva uma função que receba um slice de palavras
+//e retorne um mapa onde as chaves são palavras que são anagramas entre si
+//e os valores são os grupos de palavras anagramas.
+
+func main() {
+	var palavras = []string{"roma", "amor"}
+
+	fmt.Println(AnagramsMap(palavras))
+}
+func AnagramsMap(palavras []string) map[string]int {
+	mapa1 := make(map[string]int)
+
+	var x = 0
+	for i := 0; i < len(palavras)-1; i++ {
+		for j := 1; j < len(palavras); j++ {
+			if IsAnagram(palavras[i], palavras[j]) {
+				mapa1[palavras[i]] = x
+				mapa1[palavras[j]] = x
+				x++
+			}
+		}
+	}
+	return mapa1
+}
+
+func IsAnagram(a string, b string) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	MapaAnagrama := make(map[string]int)
+
+	for i := 0; i < len(a); i++ {
+		MapaAnagrama[string(a[i])]++
+	}
+	for i := 0; i < len(b); i++ {
+		MapaAnagrama[string(b[i])]--
+	}
+
+	for i := 0; i < len(a); i++ {
+		if MapaAnagrama[string(a[i])] != 0 {
+			return false
+		}
+	}
+	return true
+}
