@@ -13,13 +13,8 @@ func Despesas(Desp map[string]int) map[string]int {
 	}
 
 	media := sum / len(Desp)
-	for _, valor := range Desp {
-		if valor > media {
-			valor = valor - media
-		} else {
-			valor = valor - media
-
-		}
+	for chave, valor := range Desp {
+		Desp[chave] = valor - media
 	}
 	return Desp
 }
