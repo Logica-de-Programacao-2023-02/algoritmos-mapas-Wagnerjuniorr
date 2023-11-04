@@ -1,0 +1,26 @@
+package main
+
+import "fmt"
+
+//Escreva uma função que receba uma lista de mapas,
+//onde cada mapa contém a contagem de palavras de um texto,
+//e retorne um único mapa contendo a soma de todas as contagens.
+
+func Contagem(lista []map[string]int) map[string]int {
+	soma := make(map[string]int)
+
+	for _, mapa := range lista {
+		for palavra, contagem := range mapa {
+			soma[palavra] += contagem
+		}
+	}
+	return soma
+}
+
+func main() {
+	lista := []map[string]int{
+		{"Maria": 2, "Pedro": 3},
+		{"Wagner": 6, "Pedro": 1},
+	}
+	fmt.Println(Contagem(lista))
+}
