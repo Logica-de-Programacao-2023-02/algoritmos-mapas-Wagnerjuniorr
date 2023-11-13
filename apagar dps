@@ -6,12 +6,15 @@ import (
 )
 
 func main() {
-	WhoStarts("tales", "wagner")
+	WhoStarts("a", "b")
+	fmt.Println()
+	resultado := Game()
+	PrintBoard(resultado)
 }
 
 func WhoStarts(FirstPlayer string, SecondPlayer string) {
-
-	if time.Now().UnixNano()%2 == 0 {
+	t := time.Now()
+	if t.Second()%2 == 0 {
 		fmt.Println(FirstPlayer)
 	} else {
 		fmt.Println(SecondPlayer)
@@ -19,17 +22,23 @@ func WhoStarts(FirstPlayer string, SecondPlayer string) {
 
 }
 
-func Game() [][]string {
-	var Board [][]string
+func Game() [3][5]string {
+	var board [3][5]string
 
 	for i := 0; i < 3; i++ {
 		for j := 0; j < 5; j++ {
 			if j%2 == 0 {
-				Board[][] = " "
+				board[i][j] = "-"
 			} else {
-				Board[][] = "|"
+				board[i][j] = "|"
 			}
 		}
 	}
-	return Board
+	return board
+}
+
+func PrintBoard(board [3][5]string) {
+	for _, rows := range board {
+		fmt.Println(rows)
+	}
 }
