@@ -1,0 +1,31 @@
+package main
+
+import (
+	"fmt"
+)
+
+func contarPares(slice []int) map[int]int {
+	frequencia := make(map[int]int)
+
+	for i := 0; i < len(slice)-1; i++ {
+		for j := i + 1; j < len(slice); j++ {
+			par := []int{slice[i], slice[j]}
+
+			// Ordena os elementos do par para garantir consistência nas chaves
+			if par[0] > par[1] {
+				par[0], par[1] = par[1], par[0]
+			}
+
+			// Incrementa a frequência do par no mapa
+			frequencia[par[0]*10+par[1]]++
+		}
+	}
+
+	return frequencia
+}
+
+func main() {
+	slice := []int{1, 2, 3, 4, 5, 1, 2, 3, 4}
+	resultado := contarPares(slice)
+	fmt.Println(resultado)
+}
